@@ -1,0 +1,23 @@
+{
+  "name": "xroad",
+  "version": "1.0.0",
+  "description": "Cliente para conectarse a xroad salud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hugo H. Fernandez",
+  "license": "ISC",
+  "dependencies": {
+    "easy-soap-request": "^3.4.0",
+    "easysoap": "^2.2.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "prettier": "^2.1.2",
+    "soap": "^0.33.0",
+    "xroad-client": "0.0.8"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  }
+}

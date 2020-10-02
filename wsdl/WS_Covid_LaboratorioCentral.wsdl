@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tns="http://thinknet.x-road.eu/producer/" 
+xmlns:wsdl="http://www.w3.org/ns/wsdl" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+targetNamespace="http://thinknet.x-road.eu/producer/"
+xmlns:xrd="http://x-road.eu/xsd/xroad.xsd" 
+xmlns:id="http://x-road.eu/xsd/identifiers"
+>
+
+	<types>
+		<schema targetNamespace="http://thinknet.x-road.eu/producer/" xmlns="http://www.w3.org/2001/XMLSchema">
+			
+			<import namespace="http://x-road.eu/xsd/xroad.xsd" schemaLocation="http://x-road.eu/xsd/xroad.xsd"/>
+			<import namespace="http://www.w3.org/2005/05/xmlmime" schemaLocation="http://www.w3.org/2005/05/xmlmime"/>
+			
+	    <complexType name="solicitarserviciointegrabilidad_request">
+          <sequence>
+
+            <element name="fuenteautentica" type="string">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">fuenteautentica: </xrd:title>
+			  </appinfo>
+			</annotation>
+            </element>
+
+            <element name="servicio" type="string">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">servicio: </xrd:title>
+			  </appinfo>
+			</annotation>
+            </element>
+
+            <element name="involucrado" type="string">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">involucrado: </xrd:title>
+			  </appinfo>
+			</annotation>
+            </element>
+
+          </sequence>
+        </complexType>
+
+      
+      <complexType name="solicitarserviciointegrabilidad_response">
+          <sequence>
+		  
+	        <element name="codResultado" type="int">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">Código Resultado: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+
+	        <element name="mensajeResultado" type="string">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">Mensaje Resultado: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+
+             <element name="resultado1" type="xsd:base64Binary">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">resultado 1: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+
+			   <element name="resultado2" type="xsd:base64Binary">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">resultado 2: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+			   
+             <element name="resultado3" type="xsd:base64Binary">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">resultado 3: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+			   
+             <element name="resultado4" type="xsd:base64Binary">
+			 <annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">resultado 4: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+
+			   <element name="resultado5" type="xsd:base64Binary">
+			<annotation>
+			  <appinfo>
+				<xrd:title xml:lang="en">resultado 5: </xrd:title>
+			  </appinfo>
+			</annotation>
+               </element>
+
+          </sequence>
+        </complexType>
+      
+
+      <element name="WS_Covid_LaboratorioCentral">
+        <complexType>
+          <sequence>
+            <element name="request" type="tns:solicitarserviciointegrabilidad_request"/>
+          </sequence>
+        </complexType>
+      </element>
+
+      <element name="WS_Covid_LaboratorioCentralResponse">
+        <complexType>
+          <sequence>
+            <element name="request" type="tns:solicitarserviciointegrabilidad_request"/>
+            <element name="response" type="tns:solicitarserviciointegrabilidad_response"/>
+          </sequence>
+        </complexType>
+      </element>
+
+    </schema>
+  </types>
+	
+ <message name="standardheader">
+	<part name="client" element="xrd:client"/>
+	<part name="service" element="xrd:service"/>
+	<part name="id" element="xrd:id"/>
+	<part name="userId" element="xrd:userId"/>
+	<part name="protocolVersion" element="xrd:protocolVersion"/>
+  </message>
+
+  <message name="WS_Covid_LaboratorioCentral">
+	<part name="body" element="tns:WS_Covid_LaboratorioCentral"/>
+  </message>
+  
+  <message name="WS_Covid_LaboratorioCentralResponse">
+	<part name="body" element="tns:WS_Covid_LaboratorioCentralResponse"/>
+  </message>
+
+  <portType name="myporttype">
+
+	<operation name="WS_Covid_LaboratorioCentral">
+	  <documentation>
+		<xrd:title>WS_Covid_LaboratorioCentral</xrd:title>
+	  </documentation>
+	  <input message="tns:WS_Covid_LaboratorioCentral"/>
+	  <output message="tns:WS_Covid_LaboratorioCentralResponse"/>
+	</operation>
+
+  </portType>
+
+  <binding name="mybinding" type="tns:myporttype">
+	<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+	<operation name="WS_Covid_LaboratorioCentral">
+	  
+	  <xrd:version>v1</xrd:version>
+	  
+	  <soap:operation soapAction="WS_Covid_LaboratorioCentral" style="document"/>
+
+	  <input>
+		<soap:body parts="body" use="literal"/>
+			<soap:header message="tns:standardheader" part="client" use="literal"/>
+			<soap:header message="tns:standardheader" part="service" use="literal"/>
+			<soap:header message="tns:standardheader" part="id" use="literal"/>
+			<soap:header message="tns:standardheader" part="userId" use="literal"/>
+			<soap:header message="tns:standardheader" part="protocolVersion" use="literal"/>
+	  </input>
+	  
+	  <output>
+        <soap:body parts="body" use="literal"/>
+			<soap:header message="tns:standardheader" part="client" use="literal"/>
+			<soap:header message="tns:standardheader" part="service" use="literal"/>
+			<soap:header message="tns:standardheader" part="id" use="literal"/>
+			<soap:header message="tns:standardheader" part="userId" use="literal"/>
+			<soap:header message="tns:standardheader" part="protocolVersion" use="literal"/>
+	  </output>
+	  
+	</operation>
+	
+  </binding>
+
+  <service name="WebServiceIntegrabilidad">
+	<port name="myport" binding="tns:mybinding">
+	  <soap:address location="http://10.1.232.17/WS_Covid_LaboratorioCentral/adapter.asmx"/>
+	  <xrd:title xml:lang="en">Adaptador Fuente Auténtica</xrd:title>
+	  <xrd:address producer="webadmin"/>
+	</port>
+  </service>
+</definitions>
