@@ -9,6 +9,7 @@
   "author": "Hugo H. Fernandez",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.1.2",
     "easy-soap-request": "^3.4.0",
     "easysoap": "^2.2.0",
     "fs": "0.0.1-security",
