@@ -1,7 +1,7 @@
 import XRoad from 'xroad-client';
 const atob = require('atob');
 
-async function llama() {
+async function get() {
 
   // Create the configuration object pointing to 
   // the consumer security server
@@ -52,4 +52,5 @@ async function llama() {
   console.log(atob(res.response.resultado1));
 }
 
-llama();
+// Ejemplo hardcodeado: Deberá generalizarse
+get();
